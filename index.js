@@ -1,5 +1,5 @@
-import {readFile, writeFile} from "node:fs/promises";
-import path from "node:path";
+const {readFile, writeFile} = require("node:fs/promises");
+const path = require("node:path");
 
 async function updatePackage() {
   const localData = await readFile(path.resolve(__dirname, "./package.json"));
