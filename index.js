@@ -6,7 +6,7 @@ async function updatePackage() {
   const localPackage = JSON.parse(localData);
   const rootData = await readFile(path.resolve(__dirname, "../../package.json"));
   const rootPackage = JSON.parse(rootData);
-
+console.log("local\n", localPackage)
   if(localPackage.watch) {
     rootPackage.watch = localPackage.watch;
   }
@@ -18,7 +18,7 @@ async function updatePackage() {
 
     rootPackage.scripts[script] = localPackage.scripts[script];
   }
-  console.log(rootPackage);
+  console.log("final\n", rootPackage);
   await writeFile(path.resolve(__dirname, "../../package.json"), JSON.stringify(rootPackage));
 }
 
