@@ -6,7 +6,7 @@ async function updatePackage(localPackagePath, rootPackagePath) {
   const localPackage = JSON.parse(localData);
   const rootData = await readFile(rootPackagePath);
   const rootPackage = JSON.parse(rootData);
-console.log("local\n", localPackage)
+
   if(localPackage.watch) {
     rootPackage.watch = localPackage.watch;
   }
@@ -18,8 +18,8 @@ console.log("local\n", localPackage)
 
     rootPackage.scripts[script] = localPackage.scripts[script];
   }
-  console.log("final\n", rootPackage);
-  await writeFile(path.resolve(__dirname, "../../package.json"), JSON.stringify(rootPackage));
+
+  await writeFile(path.resolve(__dirname, "../../package.json"), JSON.stringify(rootPackage, null, 2));
 }
 
 module.exports = updatePackage;
